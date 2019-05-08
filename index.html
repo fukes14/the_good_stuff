@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login page</title>
+	</head>
+	<body>
+	<h1>Login Page</h1>
+	<form name="login">
+	Email:&nbsp&nbsp&nbsp&nbsp&nbsp <input type="email" name="email"/><br>
+	Password: <input type="password" name="password"/><br>
+	<input type="button" value="Create account" onclick="create()"/>
+	<input type="button" onclick="check(this.form)" value="Login"/>
+	</form>
+	<script language="javascript">
+		var three = 0;
+
+		function create()
+		{
+			window.open('create.html')
+			self.close()
+
+		}
+		function check(form)
+		{ /*function to check userid & password*/
+			/*the following code checkes whether the entered userid and password are matching*/
+			//alert("Put a message here.")
+
+			//dom parser stuff
+			var userlist;
+
+			console.log("pre-user")
+			// Create a connection to the file.
+
+			loadXMLDoc()
+			function loadXMLDoc()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function()
+				{
+					if (this.readyState == 4 && this.status == 200)
+					{
+						myFunction(this);
+					}
+				};
+
+				xmlhttp.open("GET", "xmlstuff/users.xml", true);
+				xmlhttp.send();
+			}
+
+			var email
+			var pass
+			function myFunction(xml)
+			{
+				var i;
+				var doc = xml.responseXML;
+
+				// Place the root node in an element.
+				var user = doc.getElementsByTagName("user");
+
+
+				var index = 0;
+
+				// Retrieve each customer in turn.
+				for (var i = 0; i < user.length; i++)
+				{
+					// Access each of the data values.
+					email = user[i].getElementsByTagName("email")[0].childNodes[0].nodeValue;
+					pass = user[i].getElementsByTagName("password")[0].childNodes[0].nodeValue;
+					//if must be here only getting last one
+					if(form.email.value == email && form.password.value == pass)
+					{
+						index = i;
+					}
+				}
+
+				email = user[index].getElementsByTagName("email")[0].childNodes[0].nodeValue;
+				pass = user[index].getElementsByTagName("password")[0].childNodes[0].nodeValue;
+
+				if(form.email.value == email && form.password.value == pass)
+				{
+					var food = "email=" + email;
+					document.cookie = food;
+					console.log("Hello")
+					window.open('listing_main.html')
+					self.close();
+				}
+				else
+				{
+					if(three > 2)
+					{
+						alert("To many mistries so create an account")
+						//Create invalid cookie
+						var food = "email=puje";
+						document.cookie = food;
+					}
+					else
+					{
+						alert("The email or password didnt match")
+					}
+
+					three++;
+				}
+			}
+
+
+
+
+		console.log("post-user")
+
+		}
+	</script>
+</body>
+</html>

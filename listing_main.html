@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Add a listing</title>
+        <meta name="description" content="textbook listings">
+        <link rel="stylesheet" href="main.css">
+    </head>
+
+    <body onload="load()">
+
+        <h1> <center>Listing main weeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</center></h1>
+
+        <form name="login">
+      	<input type="button" onclick="leave()" value="Login page"/>
+      	</form>
+
+        <button onclick="alertCookie()">Show cookies</button>
+
+        <script language="javascript">
+          function leave()
+          {
+            window.open('index.html')
+            self.close()
+          }
+          function load()
+          {
+            loadXMLDoc()
+      			function loadXMLDoc()
+      			{
+      				var xmlhttp = new XMLHttpRequest();
+      				xmlhttp.onreadystatechange = function()
+      				{
+      					if (this.readyState == 4 && this.status == 200)
+      					{
+      						myFunction(this);
+      					}
+      				};
+
+      				xmlhttp.open("GET", "xmlstuff/users.xml", true);
+      				xmlhttp.send();
+      			}
+
+      			var email
+      			function myFunction(xml)
+      			{
+      				var i;
+      				var doc = xml.responseXML;
+
+      				// Place the root node in an element.
+      				var user = doc.getElementsByTagName("user");
+
+      				var index = 0;
+      				// Retrieve each customer in turn.
+      				for (var i = 0; i < user.length; i++)
+      				{
+      					// Access each of the data values.
+      					email = user[i].getElementsByTagName("email")[0].childNodes[0].nodeValue;
+        			        var ca = document.cookie.split('=');
+			                var emailtocheck = ca[1];
+      					if(emailtocheck == email)
+      					{
+      						index = i;
+      					}
+      				}
+
+      				email = user[index].getElementsByTagName("email")[0].childNodes[0].nodeValue;
+
+      				if(emailtocheck != email)
+      				{
+                alert("You are not logged in and accessing illegally, cease and desist now")
+      					self.close()
+                var i = 0;
+                for(i = 0; i < 10; i++)
+                {
+                  alert("You are not logged in and accessing illegally, cease and desist now")
+                  i = 1;
+                }
+      				}
+            }
+          }//my email validation
+
+          function alertCookie()
+          {
+            alert(document.cookie);
+          }
+        </script>
+
+    </body>
+</html>
+

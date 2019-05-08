@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Create Account page</title>
+	</head>
+	<body>
+	<h1>Create Account page</h1>
+	<form name="login" action="store.php" method="post">
+	Email:&nbsp&nbsp&nbsp&nbsp&nbsp <input type="email" name="email"/><br>
+	Password: <input type="password" name="password"/><br>
+	Verify:&nbsp&nbsp&nbsp&nbsp&nbsp <input type="password" name="password2"/><br>
+	<input type="button" onclick="loginpoop()" value="Login Page"/>
+	<input type="submit" value="Create account"/>
+	</form>
+	<script language="javascript">
+		function loginpoop()
+		{
+			window.open('index.html')
+			self.close()
+		}
+
+
+
+		function check(form)
+		{
+			loadXMLDoc()
+			function loadXMLDoc()
+			{
+				var xmlhttp = new XMLHttpRequest();
+				xmlhttp.onreadystatechange = function()
+				{
+					if (this.readyState == 4 && this.status == 200)
+					{
+						myFunction(this);
+					}
+				};
+
+				xmlhttp.open("GET", "users.xml", true);
+				xmlhttp.send();
+			}
+console.log("poop1")
+			var email
+			var pass
+			function myFunction(xml)
+			{
+				var i;
+				var doc = xml.responseXML;
+				console.log("poop2")
+				var user = doc.getElementsByTagName("user");
+
+			newEle = user.createElement;
+			newEle.innerHTML = "Male"
+			newText = user.createTextNode("first");
+			newEle.appendChild(newText);
+
+			doc.getElementsByTagName("user")[0].appendChild(newEle);
+			}
+		}
+
+
+
+		</script>
+  </body>
+</head>
+</html>
