@@ -27,13 +27,15 @@
 
 			//dom parser stuff
 			var userlist;
+			
+
 
 			console.log("pre-user")
 			// Create a connection to the file.
 
 			loadXMLDoc()
 			function loadXMLDoc()
-			{
+			{console.log("checking1")
 				var xmlhttp = new XMLHttpRequest();
 				xmlhttp.onreadystatechange = function()
 				{
@@ -44,20 +46,21 @@
 				};
 
 				xmlhttp.open("GET", "xmlstuff/users.xml", true);
-				xmlhttp.send();
+console.log("checking2")				
+xmlhttp.send();
 			}
 
 			var email
 			var pass
 			function myFunction(xml)
-			{
+			{console.log("checking3")
 				var i;
 				var doc = xml.responseXML;
 
 				// Place the root node in an element.
 				var user = doc.getElementsByTagName("user");
 
-
+console.log("checking4")
 				var index = 0;
 
 				// Retrieve each customer in turn.
@@ -67,9 +70,17 @@
 					email = user[i].getElementsByTagName("email")[0].childNodes[0].nodeValue;
 					pass = user[i].getElementsByTagName("password")[0].childNodes[0].nodeValue;
 					//if must be here only getting last one
+console.log(email)
+console.log(pass)
+console.log(form.email.value)
+console.log(form.password.value)
 					if(form.email.value == email && form.password.value == pass)
 					{
-						index = i;
+ console.log("checking5")
+						if(index == 0)
+						{
+							index = i;
+						}
 					}
 				}
 
@@ -111,3 +122,4 @@
 	</script>
 </body>
 </html>
+
