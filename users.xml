@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<users>
+	<user>
+		<email>poop@gmail.com</email>
+		<password>firstpass</password>
+	</user>
+	<user>
+		<email>mir@gmail.com</email>
+		<password>secpass</password>
+	</user>
+	<user>
+		<email>zach@gmail.com</email>
+		<password>thirdpass</password>
+	</user>
+<user><email>poophead@fuckyou.edu</email><password>fourth</password></user>
+<user><email>p@p.com</email><password>33333</password></user>
+<user><email>temp@notreal.org</email><password>1234</password></user>
+</users>
